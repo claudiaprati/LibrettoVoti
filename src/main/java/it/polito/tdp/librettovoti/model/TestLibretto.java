@@ -16,5 +16,6 @@ public class TestLibretto {
         System.out.println("elenco esami con 25:\n"+venti5);
         Libretto newlib=lib.votiUguali(25);
         System.out.println("elenco esami con 25:\n"+newlib);
+
     }
 }

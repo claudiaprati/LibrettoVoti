@@ -46,6 +46,21 @@ public class Libretto {
         return nl;
     }
 
+    /**
+     * Ricerca un voto associato al corso indicato come parametro
+     * se corso non esiste ritorna NULL
+     * @param materia nome del corso di cui si vuole avere il voto
+     * @return riferimento ad oggetto voto o NULL se materia non esiste nel libretto
+     */
+     public Voto searchVoto(String materia){
+        Voto ris=null;
+        for(Voto v: this.vt){
+            if (v.getNcorso().equals(materia))
+                ris=v;
+        }
+        return ris;
+    }
+
 
     public Libretto votiUguali(int punteggio){
         // restituisce un altro libretto con soli i voti che soddisfano la condizione che ha il metodo toString con cui potersi stampare

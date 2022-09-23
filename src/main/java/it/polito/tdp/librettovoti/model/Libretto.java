@@ -1,6 +1,7 @@
 package it.polito.tdp.librettovoti.model;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Libretto {
@@ -26,4 +27,38 @@ public class Libretto {
         }
         return s;
     }
+    /*
+    public  String votiUguali(int punteggio){
+        // calcola la stringa dei voti da stampare e poi il chiamante procede nella stampa
+        String s="";
+
+    }
+    */
+    public  List<Voto> listaUguali(int punteggio){
+        // restituisce una lista di voti da stampare e poi il chiamante procede nella stampa
+        //qui nondecido quali sono i dati da stampare ma sarà ilchiamante che li seleziona a suo piacere
+        //difetto: si espone all'esterno il tipo di dati che ho usato all'interno
+        List<Voto> nl=new LinkedList<>();
+        for(Voto v:this.vt){
+            if (v.getVoto() ==punteggio)
+                nl.add(v);// lo stesso oggetto è contenuto in due liste diverse (quella del libretto e quella della linkedList in cui l'ho inserito
+        }
+        return nl;
+    }
+
+
+    public Libretto votiUguali(int punteggio){
+        // restituisce un altro libretto con soli i voti che soddisfano la condizione che ha il metodo toString con cui potersi stampare
+        Libretto nl=new Libretto();
+        for(Voto v:this.vt) {
+            if (v.getVoto() == punteggio) {
+                nl.add(v);// lo stesso oggetto è contenuto in due liste diverse (quella del libretto e quella della linkedList in cui l'ho inserito
+                //qui si potrebbe dire  nl.vt.add(v)
+
+            }
+        }
+        return nl;
+    }
+
+
 }

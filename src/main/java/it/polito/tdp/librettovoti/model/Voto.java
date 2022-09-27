@@ -52,10 +52,13 @@ public class Voto {
 
     @Override
     public String toString() {
-        return "Voto{" +
+        /*return "Voto{" +
                 "ncorso='" + ncorso + '\'' +
                 ", voto=" + voto +
                 ", desame=" + desame +
                 "}\n";
+    */
+        return ncorso+":"+voto+"\n";
     }
+
 }

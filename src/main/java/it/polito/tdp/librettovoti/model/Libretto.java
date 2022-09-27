@@ -74,6 +74,8 @@ public class Libretto {
         }
         return nl;
     }
-
+   public List<Voto> getVoti(){
+         return this.vt;
+   }
 
 }

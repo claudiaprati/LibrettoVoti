@@ -63,26 +63,30 @@ public class FXMLController {
                     //uscita dal gestore dell'evento
         }
         else {
-            modello.add(new Voto(nome, punteggio, dataVoto));
+            boolean ok=modello.add(new Voto(nome, punteggio, dataVoto));
 
-            //fase3: visualizzazione/aggiornamento risultato
+            if (ok) {
+                //fase3: visualizzazione/aggiornamento risultato
 
-            //notifica di avvenuto inserimento
-            //variazione della text area con nuovo voto
-            //txtElencoVoti.setText(modello.toString());
+                //notifica di avvenuto inserimento
+                //variazione della text area con nuovo voto
+                //txtElencoVoti.setText(modello.toString());
 //meglio che interfaccia del modello sia sempre ad oggetti
-            //compito del controller è decidere come visualizzare le cose
-            List<Voto> elenco= modello.getVoti();
-            txtElencoVoti.clear();
-            txtElencoVoti.appendText("Hai superato "+elenco.size()+" esami\n");
-            for(Voto v: elenco){
-                txtElencoVoti.appendText(v.toString()+"\n");
+                //compito del controller è decidere come visualizzare le cose
+                List<Voto> elenco = modello.getVoti();
+                txtElencoVoti.clear();
+                txtElencoVoti.appendText("Hai superato " + elenco.size() + " esami\n");
+                for (Voto v : elenco) {
+                    txtElencoVoti.appendText(v.toString() + "\n");
+                }
+                //txtNome.setText("");
+                txtNome.clear();
+                txtData.getEditor().clear();
+                cmbPunti.setValue(null);
+                lblStatus.setText("");
             }
-            //txtNome.setText("");
-            txtNome.clear();
-            txtData.getEditor().clear();
-            cmbPunti.setValue(null);
-            lblStatus.setText("");
+            else
+                lblStatus.setText("Esame in conflitto o già presente!!!");
         }
     }
 

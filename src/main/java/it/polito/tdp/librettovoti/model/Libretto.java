@@ -10,8 +10,13 @@ public class Libretto {
     public Libretto() {
         this.vt= new ArrayList<>();
     }
-    public void add(Voto v) {
-        this.vt.add(v);
+    public boolean add(Voto v) {
+        if (!this.isConflitto(v) && ! this.isDuplicato(v)) {
+            this.vt.add(v);
+            return true;
+        }
+        else
+            return false;
     }
 
     @Override
@@ -76,6 +81,28 @@ public class Libretto {
     }
    public List<Voto> getVoti(){
          return this.vt;
+   }
+   public boolean isDuplicato(Voto voto){
+         for(Voto v: this.vt){
+             //if (v.getNcorso().equals(voto.getNcorso()) && v.getVoto()==voto.getVoto())
+             if (v.equals(voto))
+                 return true;
+         }
+         return false;
+   }
+   public boolean isConflitto(Voto v){
+         Integer punti=this.searchPuntiEsame(v.getNcorso());
+        if (punti!=null && punti!=v.getVoto())
+            return true;
+        else
+            return false;
+   }
+   public Integer searchPuntiEsame(String ncorso){
+         for(Voto v:this.vt){
+             if (v.getNcorso().equals(ncorso))
+                 return v.getVoto();
+         }
+         return null;
    }
 
 }

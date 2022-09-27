@@ -18,7 +18,31 @@ public class Libretto {
         else
             return false;
     }
+public Libretto votiMigliorati(){
+        Libretto libnew=new Libretto();
+        for(Voto v:this.vt){
+            int punti=v.getVoto();
+            if (punti>=24)
+                punti+=2;
+            else
+                punti++;
+            if (punti>30)
+                punti=30;
+            libnew.add(new Voto(v.getNcorso(),punti,v.getDesame()));
+        }
+        return libnew;
+}
 
+    /**
+     * Cancella voti minori di punti
+     * @param punti valore punteggio al di sotto del quale i voti si cancellano
+     */
+    public  void  deletePuntiMinori(int punti){
+        for(Voto v:this.vt) {
+            if (v.getVoto()<punti)
+                this.vt.remove(v);
+        }
+    }
     @Override
     public String toString() {
         /*return "Libretto{\n" +

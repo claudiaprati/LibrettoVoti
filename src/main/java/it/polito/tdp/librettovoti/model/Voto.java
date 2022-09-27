@@ -60,5 +60,11 @@ public class Voto {
     */
         return ncorso+":"+voto+"\n";
     }
+    public boolean equals(Voto v){
+        if (v.getVoto()==this.voto && v.getNcorso().equals((this.ncorso))&&v.getDesame().equals(this.desame))
+            return true;
+        else
+            return false;
+    }
 
 }

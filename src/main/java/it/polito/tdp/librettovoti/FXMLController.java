@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 
 import it.polito.tdp.librettovoti.model.Libretto;
 import it.polito.tdp.librettovoti.model.Voto;
+import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -41,6 +42,14 @@ public class FXMLController {
     @FXML // fx:id="txtElencoVoti"
     private TextArea txtElencoVoti; // Value injected by FXMLLoader
 
+    @FXML
+    private Button btnDelete;
+
+    @FXML
+    private Button btnLibrettoMigliore;
+
+    @FXML
+    private Button btnQuit;
     private Libretto modello;
 
     @FXML
@@ -73,12 +82,7 @@ public class FXMLController {
                 //txtElencoVoti.setText(modello.toString());
 //meglio che interfaccia del modello sia sempre ad oggetti
                 //compito del controller è decidere come visualizzare le cose
-                List<Voto> elenco = modello.getVoti();
-                txtElencoVoti.clear();
-                txtElencoVoti.appendText("Hai superato " + elenco.size() + " esami\n");
-                for (Voto v : elenco) {
-                    txtElencoVoti.appendText(v.toString() + "\n");
-                }
+                this.modificaView("chiamata da add--");
                 //txtNome.setText("");
                 txtNome.clear();
                 txtData.getEditor().clear();
@@ -89,7 +93,33 @@ public class FXMLController {
                 lblStatus.setText("Esame in conflitto o già presente!!!");
         }
     }
+    private void modificaView(String s){
+        List<Voto> elenco = modello.getVoti();
+        txtElencoVoti.clear();
+        txtElencoVoti.appendText(s+"Hai superato " + elenco.size() + " esami\n");
+        for (Voto v : elenco) {
+            txtElencoVoti.appendText(v.toString());
+        }
 
+    }
+
+    @FXML
+    void handleBtnDelete(ActionEvent event) {
+    //azione sul modello
+        modello.deletePuntiMinori(24);
+        // cambiamento distato della view causa modifica dei dati
+        this.modificaView("chiamata da delete --");
+    }
+
+    @FXML
+    void handleBtnLibrettoMigliore(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handleBtnQuit(ActionEvent event) {
+        System.exit(0);
+    }
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         assert btnAdd != null : "fx:id=\"btnAdd\" was not injected: check your FXML file 'Scene.fxml'.";

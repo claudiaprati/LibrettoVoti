@@ -1,6 +1,7 @@
 package it.polito.tdp.librettovoti.model;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -38,9 +39,15 @@ public Libretto votiMigliorati(){
      * @param punti valore punteggio al di sotto del quale i voti si cancellano
      */
     public  void  deletePuntiMinori(int punti){
-        for(Voto v:this.vt) {
-            if (v.getVoto()<punti)
-                this.vt.remove(v);
+//cancellare elementi tramite iteratore
+        Iterator<Voto> it=this.vt.iterator();
+        while(it.hasNext()){
+                Voto v=it.next();
+                if (v.getVoto()<punti) {
+               // System.out.println("eliminato voto di "+v.getNcorso()+ ":"+v.getVoto());
+                //Voto vn=new Voto(v.getNcorso(),v.getVoto(),v.getDesame());
+                    it.remove();
+                }
         }
     }
     @Override
